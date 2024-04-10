@@ -1,6 +1,6 @@
 package br.com.projetosalura.AppTabelaFipe.demo.main;
 
-import br.com.projetosalura.AppTabelaFipe.demo.models.Brand;
+import br.com.projetosalura.AppTabelaFipe.demo.main.brandMenu.BrandMenu;
 import br.com.projetosalura.AppTabelaFipe.demo.models.VehicleType;
 
 import java.util.Scanner;

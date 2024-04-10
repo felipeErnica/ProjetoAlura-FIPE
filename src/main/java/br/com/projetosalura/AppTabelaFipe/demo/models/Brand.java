@@ -1,21 +1,19 @@
 package br.com.projetosalura.AppTabelaFipe.demo.models;
 
 import br.com.projetosalura.AppTabelaFipe.demo.tools.DataCollector;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class Brand  {
-
+public class Brand extends DataModel implements Comparable<Brand> {
     private int code;
     private String name;
 
-    public Brand(DataCollector dataCollector, VehicleType vehicleType) {
-        this.code = Integer.parseInt(dataCollector.code());
-        this.name = dataCollector.name();
-        this.vehicleType = vehicleType;
-    }
-
     private VehicleType vehicleType;
+
+    public Brand(String code, String name) {
+        super(code, name);
+    }
 
     public String getType() {
         return vehicleType.getType();
@@ -30,6 +28,11 @@ public class Brand  {
     @Override
     public String toString() {
         return this.code + " - " + this.name;
+    }
+
+    @Override
+    public int compareTo(@NotNull Brand o) {
+        return Integer.compare(this.code, o.getBrandCode());
     }
 
 }

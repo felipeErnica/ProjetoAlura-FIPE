@@ -1,11 +1,14 @@
 package br.com.projetosalura.AppTabelaFipe.demo.main;
 
 import br.com.projetosalura.AppTabelaFipe.demo.models.Brand;
+import br.com.projetosalura.AppTabelaFipe.demo.models.ModelList;
 import br.com.projetosalura.AppTabelaFipe.demo.models.VehicleModel;
 import br.com.projetosalura.AppTabelaFipe.demo.tools.AddressConstructor;
 import br.com.projetosalura.AppTabelaFipe.demo.tools.ApiConsumer;
+import br.com.projetosalura.AppTabelaFipe.demo.tools.DataCollector;
 import br.com.projetosalura.AppTabelaFipe.demo.tools.Serializer;
 
+import javax.swing.*;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -16,7 +19,8 @@ public class ModelMenu {
 
     public ModelMenu(Brand brand) {
         String json = ApiConsumer.getJson(AddressConstructor.getModelsApi(brand));;
-        this.modelList = Serializer.serializeListJson(json).stream()
+        ModelList models = Serializer.serializeJson(json, ModelList.class);
+        List<VehicleModel> listModel = models.modelList().stream()
                 .map(d -> new VehicleModel(d,brand))
                 .sorted()
                 .toList();
@@ -50,7 +54,7 @@ public class ModelMenu {
         int code = new Scanner(System.in).nextInt();
 
         Optional<VehicleModel> modelOptional = modelList.stream()
-                .filter(b -> code == b.getBrandCode())
+                .filter(b -> code == b.getModelCode())
                 .findFirst();
         if (modelOptional.isEmpty()){
             searchNotFound();

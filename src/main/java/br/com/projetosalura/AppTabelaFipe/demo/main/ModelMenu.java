@@ -1,6 +1,7 @@
 package br.com.projetosalura.AppTabelaFipe.demo.main;
 
 import br.com.projetosalura.AppTabelaFipe.demo.models.Brand;
+import br.com.projetosalura.AppTabelaFipe.demo.models.VehicleModel;
 import br.com.projetosalura.AppTabelaFipe.demo.tools.AddressConstructor;
 import br.com.projetosalura.AppTabelaFipe.demo.tools.ApiConsumer;
 import br.com.projetosalura.AppTabelaFipe.demo.tools.Serializer;
@@ -9,26 +10,26 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
-public class BrandMenu {
+public class ModelMenu {
 
-    private List<Brand> brandList;
+    private List<VehicleModel> modelList;
 
-    public BrandMenu(String vehicleType) {
-        String json = ApiConsumer.getJson(AddressConstructor.getBrandsApi(vehicleType));;
-        this.brandList = Serializer.serializeListJson(json).stream()
-                .map(d -> new Brand(d.code(), d.name(),vehicleType))
+    public ModelMenu(Brand brand) {
+        String json = ApiConsumer.getJson(AddressConstructor.getModelsApi(brand));;
+        this.modelList = Serializer.serializeListJson(json).stream()
+                .map(d -> new VehicleModel(d,brand))
                 .sorted()
                 .toList();
     }
 
-    public void displayBrands (){
-        brandList.forEach(System.out::println);
+    public void displayModels(){
+        modelList.forEach(System.out::println);
         System.out.println(
                 """
                 
                 Escolha uma opção:
                 1 - Selecionar Código
-                2 - Pesquisar Nome da Marca
+                2 - Pesquisar Nome do Modelo
                 3 - Retornar ao Menu Principal
                 """
         );
@@ -36,11 +37,11 @@ public class BrandMenu {
         String option = new Scanner(System.in).nextLine();
         switch (option) {
             case "1": selectCode();
-            case "2": searchBrand();
+            case "2": searchModel();
             case "3": MainMenu.showMenu();
             default:
                 System.out.println("Digite um valor válido!");
-                displayBrands();
+                displayModels();
         }
     }
 
@@ -48,42 +49,40 @@ public class BrandMenu {
         System.out.println("Digite o Código:");
         int code = new Scanner(System.in).nextInt();
 
-        Optional<Brand> optionalBrand = brandList.stream()
+        Optional<VehicleModel> modelOptional = modelList.stream()
                 .filter(b -> code == b.getBrandCode())
                 .findFirst();
-        if (optionalBrand.isEmpty()){
+        if (modelOptional.isEmpty()){
             searchNotFound();
         } else {
-            Brand brand = optionalBrand.get();
-            ModelMenu modelMenu = new ModelMenu(brand);
-            modelMenu.displayModels();
+            VehicleModel model = modelOptional.get();
         }
 
     }
 
-    private void searchBrand() {
+    private void searchModel() {
         System.out.println("Digite o que deseja pesquisar:");
         String search = new Scanner(System.in).nextLine().toUpperCase();
-        List<Brand> filteredList = brandList.stream()
-                .filter(b -> b.getBrandName().toUpperCase().contains(search))
+        List<VehicleModel> filteredList = modelList.stream()
+                .filter(m -> m.getModelName().toUpperCase().contains(search))
                 .sorted()
                 .toList();
 
         if (filteredList.isEmpty()) {
             searchNotFound();
         } else {
-            displayBandsFiltered(filteredList);
+            displayModelsFiltered(filteredList);
         }
     }
 
-    private void displayBandsFiltered(List<Brand> filteredList) {
+    private void displayModelsFiltered(List<VehicleModel> filteredList) {
         filteredList.forEach(System.out::println);
         System.out.println(
                 """
                 
                 Escolha uma opção:
                 1 - Selecionar Código
-                2 - Mostrar todas as Marcas
+                2 - Mostrar todas os Modelos
                 3 - Retornar ao Menu Principal
                 """
         );
@@ -91,27 +90,27 @@ public class BrandMenu {
         String option = new Scanner(System.in).nextLine();
         switch (option) {
             case "1": selectCode();
-            case "2": displayBrands();
+            case "2": displayModels();
             case "3": MainMenu.showMenu();
             default:
                 System.out.println("Digite um valor válido!");
-                displayBandsFiltered(filteredList);
+                displayModelsFiltered(filteredList);
         }
     }
 
     private void searchNotFound() {
-        System.out.println("Não foi possível encontrar esta marca!");
+        System.out.println("Não foi possível encontrar este modelo!");
         System.out.println(
                 """
                 Escolha uma opção:
-                1 - Mostrar Marcas
+                1 - Mostrar Modelos
                 2 - Retornar ao Menu Principal
                 """
         );
 
         String option = new Scanner(System.in).nextLine();
         switch (option) {
-            case "1": displayBrands();
+            case "1": displayModels();
             case "2": MainMenu.showMenu();
             default:
                 System.out.println("Digite um valor válido!");
@@ -120,4 +119,3 @@ public class BrandMenu {
     }
 
 }
-

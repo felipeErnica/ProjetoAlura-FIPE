@@ -14,7 +14,6 @@ public class AppTabelaFipeApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		MainMenu mainMenu= new MainMenu();
-		mainMenu.showMenu();
+		MainMenu.showMenu();
 	}
 }

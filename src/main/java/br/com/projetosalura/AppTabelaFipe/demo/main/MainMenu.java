@@ -1,23 +1,40 @@
 package br.com.projetosalura.AppTabelaFipe.demo.main;
 
-import br.com.projetosalura.AppTabelaFipe.demo.main.brandMenu.BrandMenu;
-import br.com.projetosalura.AppTabelaFipe.demo.models.VehicleType;
-
 import java.util.Scanner;
 
 public class MainMenu {
 
-    public void showMenu() {
-        System.out.println("Bem vindo!");
-        System.out.println("Selecione um Tipo de Veículo:");
+    public static void showMenu() {
         System.out.println("""
+            
+            "Selecione um Tipo de Veículo:"
             1 - Carros
             2 - Motos
-            3 - Caminhões \n
+            3 - Caminhões
+            4 - Sair
             """);
-        VehicleType vehicleType = new VehicleType();
-        vehicleType.chooseType(new Scanner(System.in).nextInt());
-        BrandMenu.displayBrands(vehicleType);
+        String option = new Scanner(System.in).nextLine();
+
+        BrandMenu brandMenu;
+
+        switch (option) {
+            case "1":
+                brandMenu =  new BrandMenu("carros");
+                brandMenu.displayBrands();
+                break;
+            case "2":
+                brandMenu =  new BrandMenu("motos");
+                brandMenu.displayBrands();
+                break;
+            case "3":
+                brandMenu =  new BrandMenu("caminhoes");
+                brandMenu.displayBrands();
+                break;
+            case "4":
+                break;
+            default: System.out.println("Digite um valor válido!");
+        }
+
     }
 
 }

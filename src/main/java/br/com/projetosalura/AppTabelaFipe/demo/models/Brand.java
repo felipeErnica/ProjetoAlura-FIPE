@@ -5,24 +5,26 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class Brand extends DataModel implements Comparable<Brand> {
+public class Brand implements Comparable<Brand> {
     private int code;
     private String name;
+    private String vehicleType;
 
-    private VehicleType vehicleType;
-
-    public Brand(String code, String name) {
-        super(code, name);
+    public Brand(String code, String name, String vehicleType) {
+        this.code = Integer.parseInt(code);
+        this.name = name;
     }
 
     public String getType() {
-        return vehicleType.getType();
+        return this.vehicleType;
     }
-
-    private List<VehicleModel> modelList;
 
     public int getBrandCode() {
         return this.code;
+    }
+
+    public String getBrandName() {
+        return this.name;
     }
 
     @Override

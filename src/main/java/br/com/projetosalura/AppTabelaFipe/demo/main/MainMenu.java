@@ -7,7 +7,7 @@ public class MainMenu {
     public static void showMenu() {
         System.out.println("""
             
-            "Selecione um Tipo de Veículo:"
+            Selecione um Tipo de Veículo:
             1 - Carros
             2 - Motos
             3 - Caminhões

@@ -16,9 +16,14 @@ public class AddressConstructor {
         return MAIN_BODY + brand.getType() + "/marcas/" + brand.getCode() + "/modelos";
     }
 
-    public static String getVehiclesApi(VehicleModel vehicleModel) {
+    public static String getVehiclesYearApi(VehicleModel vehicleModel) {
         return MAIN_BODY + vehicleModel.getType() +"/marcas/" + vehicleModel.getBrandCode() +
-                "/modelos/" + vehicleModel.getModelCode() + "/anos" ;
+                "/modelos/" + vehicleModel.getCode() + "/anos" ;
+    }
+
+    public static String getVehiclesApi(VehicleModel vehicleModel,String yearCode) {
+        return MAIN_BODY + vehicleModel.getType() +"/marcas/" + vehicleModel.getBrandCode() +
+                "/modelos/" + vehicleModel.getCode() + "/anos/" + yearCode;
     }
 
 }

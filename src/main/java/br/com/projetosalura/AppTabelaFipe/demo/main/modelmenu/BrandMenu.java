@@ -11,7 +11,6 @@ import br.com.projetosalura.AppTabelaFipe.demo.tools.ApiConsumer;
 import br.com.projetosalura.AppTabelaFipe.demo.tools.Serializer;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Scanner;
 
 public class BrandMenu implements IModelMenu {
@@ -41,6 +40,7 @@ public class BrandMenu implements IModelMenu {
                 1 - Selecionar Código
                 2 - Pesquisar Nome da Marca
                 3 - Retornar ao Menu Principal
+                
                 """
         );
 

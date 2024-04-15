@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class CodeSelectionMenu {
 
     public static <T extends IModelType> void selectCode(List<T> menuList, IModelMenu menu) {
-        System.out.println("Digite o Código:");
+        System.out.println("\nDigite o Código:");
         int code = new Scanner(System.in).nextInt();
 
         Optional<T> modelOptional = menuList.stream()

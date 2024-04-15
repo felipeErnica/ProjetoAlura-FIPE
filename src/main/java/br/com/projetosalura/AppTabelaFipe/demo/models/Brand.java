@@ -4,13 +4,13 @@ import br.com.projetosalura.AppTabelaFipe.demo.models.datacollector.BrandData;
 import org.jetbrains.annotations.NotNull;
 
 public class Brand implements Comparable<Brand>,IModelType {
-    private int code;
-    private String name;
+    private long brandCode;
+    private String brand;
     private String vehicleType;
 
     public Brand(BrandData data, String vehicleType) {
-        this.code = Integer.parseInt(data.code());
-        this.name = data.brand();
+        this.brandCode = Integer.parseInt(data.code());
+        this.brand = data.brand();
         this.vehicleType = vehicleType;
     }
 
@@ -18,22 +18,22 @@ public class Brand implements Comparable<Brand>,IModelType {
         return this.vehicleType;
     }
 
-    public int getCode() {
-        return this.code;
+    public long getCode() {
+        return this.brandCode;
     }
 
     public String getName() {
-        return this.name;
+        return this.brand;
     }
 
     @Override
     public String toString() {
-        return this.code + " - " + this.name;
+        return this.brandCode + " - " + this.brand;
     }
 
     @Override
     public int compareTo(@NotNull Brand o) {
-        return Integer.compare(this.code, o.getCode());
+        return Long.compare(this.brandCode, o.getCode());
     }
 
 }

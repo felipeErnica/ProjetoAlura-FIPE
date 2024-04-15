@@ -23,10 +23,14 @@ public class MainMenu {
             case "1" -> brandMenu = new BrandMenu("carros").showMenu();
             case "2" -> brandMenu = new BrandMenu("motos").showMenu();
             case "3"-> brandMenu = new BrandMenu("caminhoes").showMenu();
-            case "4"->  System.out.println("Obrigado!");
+            case "4"-> finalizeApp();
             default-> System.out.println("Digite um valor válido!");
         }
 
+    }
+
+    public static void finalizeApp(){
+        System.out.println("Obrigado!");
     }
 
 }

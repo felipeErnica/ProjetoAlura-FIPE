@@ -7,10 +7,10 @@ import java.util.Scanner;
 
 public class SearchNotFoundResponse {
     public static void showOptions(IModelMenu menu) {
-        System.out.println("Não foi possível encontrar esta pesquisa!");
+        System.out.println("\nNão foi possível encontrar esta pesquisa!");
         System.out.println("Escolha uma opção:");
         System.out.println("1 - Mostrar " + menu.getMenuName() );
-        System.out.println("2 - Retornar ao Menu Principal");
+        System.out.println("2 - Retornar ao Menu Principal\n");
 
         String option = new Scanner(System.in).nextLine();
         switch (option) {

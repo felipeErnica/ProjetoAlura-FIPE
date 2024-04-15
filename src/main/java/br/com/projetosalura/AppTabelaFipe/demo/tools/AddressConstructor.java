@@ -13,7 +13,7 @@ public class AddressConstructor {
     }
 
     public static String getModelsApi(Brand brand) {
-        return MAIN_BODY + brand.getType() + "/marcas/" + brand.getBrandCode() + "/modelos";
+        return MAIN_BODY + brand.getType() + "/marcas/" + brand.getCode() + "/modelos";
     }
 
     public static String getVehiclesApi(VehicleModel vehicleModel) {

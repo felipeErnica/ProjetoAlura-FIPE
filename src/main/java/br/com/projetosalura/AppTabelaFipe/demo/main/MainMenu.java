@@ -1,5 +1,7 @@
 package br.com.projetosalura.AppTabelaFipe.demo.main;
 
+import br.com.projetosalura.AppTabelaFipe.demo.main.modelmenu.BrandMenu;
+
 import java.util.Scanner;
 
 public class MainMenu {
@@ -18,21 +20,11 @@ public class MainMenu {
         BrandMenu brandMenu;
 
         switch (option) {
-            case "1":
-                brandMenu =  new BrandMenu("carros");
-                brandMenu.displayBrands();
-                break;
-            case "2":
-                brandMenu =  new BrandMenu("motos");
-                brandMenu.displayBrands();
-                break;
-            case "3":
-                brandMenu =  new BrandMenu("caminhoes");
-                brandMenu.displayBrands();
-                break;
-            case "4":
-                break;
-            default: System.out.println("Digite um valor válido!");
+            case "1" -> brandMenu = new BrandMenu("carros").showMenu();
+            case "2" -> brandMenu = new BrandMenu("motos").showMenu();
+            case "3"-> brandMenu = new BrandMenu("caminhoes").showMenu();
+            case "4"->  System.out.println("Obrigado!");
+            default-> System.out.println("Digite um valor válido!");
         }
 
     }

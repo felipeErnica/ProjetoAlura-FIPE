@@ -18,12 +18,10 @@ public class Serializer {
         }
     }
 
-    public static List<DataCollector> serializeListJson(String json) {
+    public static <R> List<R> serializeListJson(String json,Class<R> recordClass) {
+        CollectionType collectionType = objectMapper.getTypeFactory().constructCollectionType(List.class, recordClass);
         try {
-
-            CollectionType collectionType = objectMapper.getTypeFactory().constructCollectionType(List.class, DataCollector.class);
-            return  objectMapper.readValue(json,collectionType);
-
+            return objectMapper.readValue(json,collectionType);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
